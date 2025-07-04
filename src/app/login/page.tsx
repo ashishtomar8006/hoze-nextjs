@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState } from 'react'
 import { Eye, EyeOff, Mail, Lock, ArrowRight, MapPin, Plane, Compass, Globe, Camera, Heart, Luggage, Navigation } from 'lucide-react'
 import Link from 'next/link'
