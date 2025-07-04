@@ -1,28 +1,30 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, MessageSquare, Users, Headphones } from 'lucide-react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+'use client'
 
-const Contact = () => {
+import React, { useState } from 'react'
+import { Mail, Phone, MapPin, Clock, Send, MessageSquare, Users, Headphones } from 'lucide-react'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+
+export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
-  });
+  })
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     // Handle form submission
-    console.log('Form submitted:', formData);
-  };
+    console.log('Form submitted:', formData)
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
-    });
-  };
+    })
+  }
 
   const contactMethods = [
     {
@@ -53,7 +55,7 @@ const Contact = () => {
       contact: "123 Innovation Street, San Francisco, CA 94105",
       action: "Get Directions"
     }
-  ];
+  ]
 
   const supportOptions = [
     {
@@ -71,7 +73,7 @@ const Contact = () => {
       title: "Feedback",
       description: "Share your thoughts, suggestions, or feature requests"
     }
-  ];
+  ]
 
   return (
     <div className="min-h-screen bg-white">
@@ -97,7 +99,7 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {contactMethods.map((method, index) => {
-              const IconComponent = method.icon;
+              const IconComponent = method.icon
               return (
                 <div key={index} className={`text-center p-6 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/50 hover:shadow-lg transition-all duration-300 animate-scaleIn`} style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="bg-[#4A90E2] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -110,7 +112,7 @@ const Contact = () => {
                     {method.action}
                   </button>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
@@ -220,7 +222,7 @@ const Contact = () => {
                 <div className="space-y-6">
                   <h3 className="text-xl font-bold text-[#1C2E4A]">How can we help?</h3>
                   {supportOptions.map((option, index) => {
-                    const IconComponent = option.icon;
+                    const IconComponent = option.icon
                     return (
                       <div key={index} className={`flex items-start space-x-4 p-4 bg-white rounded-lg shadow-md animate-fadeInUp`} style={{ animationDelay: `${index * 0.1}s` }}>
                         <div className="bg-[#f8bc33] w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -231,7 +233,7 @@ const Contact = () => {
                           <p className="text-gray-600 text-sm">{option.description}</p>
                         </div>
                       </div>
-                    );
+                    )
                   })}
                 </div>
 
@@ -298,7 +300,5 @@ const Contact = () => {
 
       <Footer />
     </div>
-  );
-};
-
-export default Contact;
+  )
+}

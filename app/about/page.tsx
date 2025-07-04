@@ -1,9 +1,8 @@
-import React from 'react';
-import { Users, Target, Award, Heart, ArrowRight, CheckCircle } from 'lucide-react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { Users, Target, Award, Heart, ArrowRight, CheckCircle } from 'lucide-react'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
-const About = () => {
+export default function About() {
   const teamMembers = [
     {
       name: "Sarah Chen",
@@ -29,7 +28,7 @@ const About = () => {
       image: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=300",
       bio: "PhD in Natural Language Processing, specializing in conversational AI."
     }
-  ];
+  ]
 
   const values = [
     {
@@ -52,7 +51,7 @@ const About = () => {
       title: "Traveler-Centric",
       description: "Every feature we build is designed with the traveler's needs and dreams in mind."
     }
-  ];
+  ]
 
   const milestones = [
     { year: "2023", event: "Founded Hoze AI with a vision to revolutionize travel planning" },
@@ -60,7 +59,7 @@ const About = () => {
     { year: "2024", event: "Reached 10,000+ active users across 50+ countries" },
     { year: "2024", event: "Introduced multilingual support and voice interactions" },
     { year: "2024", event: "Partnership with major travel data providers" }
-  ];
+  ]
 
   return (
     <div className="min-h-screen bg-white">
@@ -122,7 +121,7 @@ const About = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => {
-              const IconComponent = value.icon;
+              const IconComponent = value.icon
               return (
                 <div key={index} className={`text-center p-6 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/50 hover:shadow-lg transition-all duration-300 animate-scaleIn`} style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="bg-[#4A90E2] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -131,7 +130,7 @@ const About = () => {
                   <h3 className="text-xl font-bold text-[#1C2E4A] mb-3">{value.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{value.description}</p>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
@@ -221,7 +220,5 @@ const About = () => {
 
       <Footer />
     </div>
-  );
-};
-
-export default About;
+  )
+}

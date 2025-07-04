@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, SkipForward, Check, MapPin, Plane, Compass, Globe, Camera, Heart, Luggage, Navigation } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+'use client'
+
+import React, { useState } from 'react'
+import { ChevronLeft, ChevronRight, SkipForward, Check, MapPin, Plane, Compass, Globe, Camera, Heart, Luggage, Navigation } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 const onboardingQuestions = [
   {
@@ -109,52 +112,53 @@ const onboardingQuestions = [
       { id: "5", label: "Extremely important", emoji: "🤤" }
     ]
   }
-];
+]
 
-const Onboarding = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [isAnimating, setIsAnimating] = useState(false);
+export default function Onboarding() {
+  const router = useRouter()
+  const [currentStep, setCurrentStep] = useState(0)
+  const [answers, setAnswers] = useState<Record<number, string>>({})
+  const [isAnimating, setIsAnimating] = useState(false)
 
-  const currentQuestion = onboardingQuestions[currentStep];
-  const progress = ((currentStep + 1) / onboardingQuestions.length) * 100;
+  const currentQuestion = onboardingQuestions[currentStep]
+  const progress = ((currentStep + 1) / onboardingQuestions.length) * 100
 
   const handleAnswer = (optionId: string) => {
-    setAnswers({ ...answers, [currentQuestion.id]: optionId });
+    setAnswers({ ...answers, [currentQuestion.id]: optionId })
     
     // Auto-advance after selection
     setTimeout(() => {
       if (currentStep < onboardingQuestions.length - 1) {
-        nextStep();
+        nextStep()
       }
-    }, 500);
-  };
+    }, 500)
+  }
 
   const nextStep = () => {
     if (currentStep < onboardingQuestions.length - 1) {
-      setIsAnimating(true);
+      setIsAnimating(true)
       setTimeout(() => {
-        setCurrentStep(currentStep + 1);
-        setIsAnimating(false);
-      }, 300);
+        setCurrentStep(currentStep + 1)
+        setIsAnimating(false)
+      }, 300)
     }
-  };
+  }
 
   const prevStep = () => {
     if (currentStep > 0) {
-      setIsAnimating(true);
+      setIsAnimating(true)
       setTimeout(() => {
-        setCurrentStep(currentStep - 1);
-        setIsAnimating(false);
-      }, 300);
+        setCurrentStep(currentStep - 1)
+        setIsAnimating(false)
+      }, 300)
     }
-  };
+  }
 
   const handleComplete = () => {
-    console.log('Onboarding completed:', answers);
+    console.log('Onboarding completed:', answers)
     // Navigate to subscription page
-    window.location.href = '/subscription';
-  };
+    router.push('/subscription')
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-[#f8bc33]/10">
@@ -165,7 +169,7 @@ const Onboarding = () => {
         <div className="max-w-4xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-white font-medium">{currentStep + 1} of {onboardingQuestions.length}</span>
-            <Link to="/subscription" className="text-white/80 hover:text-white transition-colors duration-200 text-sm">
+            <Link href="/subscription" className="text-white/80 hover:text-white transition-colors duration-200 text-sm">
               Skip Personalization
             </Link>
           </div>
@@ -264,7 +268,7 @@ const Onboarding = () => {
               {/* Options */}
               <div className={`grid ${currentQuestion.type === 'scale' ? 'grid-cols-5' : 'md:grid-cols-2 lg:grid-cols-3'} gap-4 max-w-4xl mx-auto`}>
                 {currentQuestion.options.map((option, index) => {
-                  const isSelected = answers[currentQuestion.id] === option.id;
+                  const isSelected = answers[currentQuestion.id] === option.id
                   return (
                     <button
                       key={option.id}
@@ -301,7 +305,7 @@ const Onboarding = () => {
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-gradient-to-r from-[#f8bc33]/5 to-[#4A90E2]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     </button>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -355,7 +359,7 @@ const Onboarding = () => {
             {/* Skip Option */}
             <div className="text-center mt-8">
               <Link 
-                to="/subscription"
+                href="/subscription"
                 className="inline-flex items-center space-x-2 text-gray-500 hover:text-[#4A90E2] transition-colors duration-200"
               >
                 <SkipForward className="h-4 w-4" />
@@ -368,7 +372,5 @@ const Onboarding = () => {
 
       <Footer />
     </div>
-  );
-};
-
-export default Onboarding;
+  )
+}

@@ -1,37 +1,41 @@
-import React, { useState } from 'react';
-import { Eye, EyeOff, Mail, Lock, ArrowRight, MapPin, Plane, Compass, Globe, Camera, Heart, Luggage, Navigation } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+'use client'
 
-const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
+import React, { useState } from 'react'
+import { Eye, EyeOff, Mail, Lock, ArrowRight, MapPin, Plane, Compass, Globe, Camera, Heart, Luggage, Navigation } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+
+export default function Login() {
+  const router = useRouter()
+  const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: ''
-  });
+  })
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     // Handle login logic
-    console.log('Login:', formData);
+    console.log('Login:', formData)
     // For demo purposes, redirect to onboarding
-    window.location.href = '/onboarding';
-  };
+    router.push('/onboarding')
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
-    });
-  };
+    })
+  }
 
   const handleDemoLogin = () => {
     setFormData({
       email: 'demo@hozeai.com',
       password: 'demo123'
-    });
-  };
+    })
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-[#f8bc33]/10">
@@ -188,7 +192,7 @@ const Login = () => {
               {/* Forgot Password */}
               <div className="flex justify-end animate-fadeInUp delay-500">
                 <Link 
-                  to="/forgot-password" 
+                  href="/forgot-password" 
                   className="text-sm text-[#4A90E2] hover:text-[#1C2E4A] transition-colors duration-200"
                 >
                   Forgot Password?
@@ -231,7 +235,7 @@ const Login = () => {
               <p className="text-gray-600">
                 Don't have an account?{' '}
                 <Link 
-                  to="/signup" 
+                  href="/signup" 
                   className="text-[#4A90E2] hover:text-[#1C2E4A] font-medium transition-colors duration-200"
                 >
                   Sign up
@@ -244,7 +248,5 @@ const Login = () => {
 
       <Footer />
     </div>
-  );
-};
-
-export default Login;
+  )
+}

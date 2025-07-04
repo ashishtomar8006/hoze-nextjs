@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import { Check, Zap, Crown, Sparkles, ArrowRight, SkipForward } from 'lucide-react';
-import { Link } from 'react-router-dom';
+'use client'
+
+import React, { useState } from 'react'
+import { Check, Zap, Crown, Sparkles, ArrowRight, SkipForward } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const plans = [
   {
@@ -69,20 +72,22 @@ const plans = [
     popular: false,
     color: "from-[#f8bc33] to-[#e6a82e]"
   }
-];
+]
 
-const Subscription = () => {
-  const [selectedPlan, setSelectedPlan] = useState('premium');
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
+export default function Subscription() {
+  const router = useRouter()
+  const [selectedPlan, setSelectedPlan] = useState('premium')
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly')
 
   const handlePlanSelect = (planId: string) => {
-    setSelectedPlan(planId);
-  };
+    setSelectedPlan(planId)
+  }
 
   const handleContinue = () => {
-    console.log('Selected plan:', selectedPlan, 'Billing:', billingCycle);
+    console.log('Selected plan:', selectedPlan, 'Billing:', billingCycle)
     // Navigate to dashboard or payment
-  };
+    router.push('/dashboard')
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-[#f8bc33]/10">
@@ -90,7 +95,7 @@ const Subscription = () => {
       <div className="bg-white/90 backdrop-blur-sm border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-2">
               <img 
                 src="/logo1_new.png" 
                 alt="Hoze AI Logo" 
@@ -99,7 +104,7 @@ const Subscription = () => {
               />
             </Link>
             <Link 
-              to="/dashboard" 
+              href="/dashboard" 
               className="flex items-center space-x-2 text-gray-600 hover:text-[#4A90E2] transition-colors duration-200"
             >
               <SkipForward className="h-4 w-4" />
@@ -155,11 +160,11 @@ const Subscription = () => {
           {/* Plans */}
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
             {plans.map((plan, index) => {
-              const IconComponent = plan.icon;
-              const isSelected = selectedPlan === plan.id;
+              const IconComponent = plan.icon
+              const isSelected = selectedPlan === plan.id
               const displayPrice = billingCycle === 'annual' && plan.price !== '0' 
                 ? Math.round(parseInt(plan.price) * 0.8).toString() 
-                : plan.price;
+                : plan.price
               
               return (
                 <div 
@@ -245,7 +250,7 @@ const Subscription = () => {
                     </div>
                   )}
                 </div>
-              );
+              )
             })}
           </div>
 
@@ -297,7 +302,7 @@ const Subscription = () => {
             </button>
             
             <Link 
-              to="/dashboard"
+              href="/dashboard"
               className="text-gray-600 hover:text-[#4A90E2] transition-colors duration-200 flex items-center"
             >
               <SkipForward className="h-4 w-4 mr-2" />
@@ -319,7 +324,5 @@ const Subscription = () => {
         </div>
       </div>
     </div>
-  );
-};
-
-export default Subscription;
+  )
+}

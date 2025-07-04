@@ -1,7 +1,7 @@
-import React from 'react';
-import { Bot, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube, Smartphone } from 'lucide-react';
+import React from 'react'
+import { Bot, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube, Smartphone } from 'lucide-react'
 
-const Footer = () => {
+export default function Footer() {
   return (
     <footer className="bg-[#1C2E4A] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -144,7 +144,5 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
-
-export default Footer;
+  )
+}

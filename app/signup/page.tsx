@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Check, Plane, MapPin, Compass, Camera, Heart, Luggage, Navigation, Anchor } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+'use client'
 
-const Signup = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+import React, { useState } from 'react'
+import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Check, Plane, MapPin, Compass, Camera, Heart, Luggage, Navigation, Anchor } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+
+export default function Signup() {
+  const router = useRouter()
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     password: '',
     confirmPassword: ''
-  });
+  })
 
   const [passwordStrength, setPasswordStrength] = useState({
     length: false,
@@ -20,22 +24,22 @@ const Signup = () => {
     lowercase: false,
     number: false,
     special: false
-  });
+  })
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     // Handle signup logic
-    console.log('Signup:', formData);
+    console.log('Signup:', formData)
     // For demo purposes, redirect to onboarding
-    window.location.href = '/onboarding';
-  };
+    router.push('/onboarding')
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setFormData({
       ...formData,
       [name]: value
-    });
+    })
 
     // Password strength validation
     if (name === 'password') {
@@ -45,23 +49,23 @@ const Signup = () => {
         lowercase: /[a-z]/.test(value),
         number: /\d/.test(value),
         special: /[!@#$%^&*(),.?":{}|<>]/.test(value)
-      });
+      })
     }
-  };
+  }
 
   const getPasswordStrengthColor = () => {
-    const score = Object.values(passwordStrength).filter(Boolean).length;
-    if (score < 2) return 'bg-red-500';
-    if (score < 4) return 'bg-yellow-500';
-    return 'bg-green-500';
-  };
+    const score = Object.values(passwordStrength).filter(Boolean).length
+    if (score < 2) return 'bg-red-500'
+    if (score < 4) return 'bg-yellow-500'
+    return 'bg-green-500'
+  }
 
   const getPasswordStrengthText = () => {
-    const score = Object.values(passwordStrength).filter(Boolean).length;
-    if (score < 2) return 'Weak';
-    if (score < 4) return 'Medium';
-    return 'Strong';
-  };
+    const score = Object.values(passwordStrength).filter(Boolean).length
+    if (score < 2) return 'Weak'
+    if (score < 4) return 'Medium'
+    return 'Strong'
+  }
 
   const handleDemoSignup = () => {
     setFormData({
@@ -69,8 +73,8 @@ const Signup = () => {
       email: 'demo@hozeai.com',
       password: 'demo123',
       confirmPassword: 'demo123'
-    });
-  };
+    })
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-[#f8bc33]/10">
@@ -80,13 +84,13 @@ const Signup = () => {
         {/* Subtle Background Elements - No flickering */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Static travel icons with gentle float */}
-          <div className="absolute top-32 right-10 opacity-20">
+          <div className="absolute top-32 right-10 opacity-15">
             <Camera className="h-24 w-24 text-[#4A90E2] animate-float" />
           </div>
-          <div className="absolute top-60 left-16 opacity-20">
+          <div className="absolute top-60 left-16 opacity-15">
             <Heart className="h-18 w-18 text-[#f8bc33] animate-float" style={{ animationDelay: '3s' }} />
           </div>
-          <div className="absolute bottom-32 right-24 opacity-20">
+          <div className="absolute bottom-32 right-24 opacity-15">
             <Compass className="h-20 w-20 text-[#1C2E4A] animate-float" style={{ animationDelay: '4s' }} />
           </div>
           <div className="absolute top-80 right-1/3 opacity-15">
@@ -339,7 +343,7 @@ const Signup = () => {
               <p className="text-gray-600">
                 Already have an account?{' '}
                 <Link 
-                  to="/login" 
+                  href="/login" 
                   className="text-[#4A90E2] hover:text-[#1C2E4A] font-medium transition-colors duration-200"
                 >
                   Login
@@ -352,7 +356,5 @@ const Signup = () => {
 
       <Footer />
     </div>
-  );
-};
-
-export default Signup;
+  )
+}
