@@ -17,27 +17,27 @@ export default function Header() {
   }, [])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-custom ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-lg border-b border-gray-100 shadow-lg' 
+        ? 'bg-white/95 backdrop-blur-lg border-b border-gray-100 shadow-custom-lg' 
         : 'bg-white/90 backdrop-blur-sm'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo - Increased width with reduced spacing */}
+          {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 animate-fadeInLeft">
             <div className="flex flex-col items-center">
               <img 
                 src="/logo1_new.png" 
                 alt="Hoze AI Logo" 
-                className="h-8 w-auto max-w-none transform hover:scale-110 transition-all duration-300"
+                className="h-8 w-auto max-w-none transform hover:scale-110 transition-custom"
                 style={{ 
                   filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8))',
                   width: 'auto',
                   minWidth: '120px'
                 }}
               />
-              <span className="text-xs text-[#4A90E2] font-medium opacity-80 hover:opacity-100 transition-opacity duration-300" style={{ marginTop: '2px' }}>
+              <span className="text-xs text-primary font-medium opacity-80 hover:opacity-100 transition-custom" style={{ marginTop: '2px' }}>
                 We know the spot
               </span>
             </div>
@@ -54,24 +54,24 @@ export default function Header() {
               <a 
                 key={item.href}
                 href={item.href} 
-                className="text-lg font-light text-[#4A90E2] hover:text-[#1C2E4A] transition-all duration-300 relative group animate-fadeInUp"
+                className="text-lg font-light text-primary hover:text-primary-dark transition-custom relative group animate-fadeInUp"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {item.text}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#f8bc33] group-hover:w-full transition-all duration-300"></span>
-                <span className="absolute inset-0 bg-gradient-to-r from-[#f8bc33]/10 to-[#4A90E2]/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 -z-10"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-custom"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-accent/10 to-primary/10 rounded-custom-lg scale-0 group-hover:scale-100 transition-custom -z-10"></span>
               </a>
             ))}
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4 animate-fadeInRight">
-            <button className="text-[#4A90E2] hover:text-[#1C2E4A] transition-all duration-300 transform hover:scale-110 hover:rotate-12">
+            <button className="text-primary hover:text-primary-dark transition-custom transform hover:scale-110 hover:rotate-12">
               <Globe className="h-5 w-5" />
             </button>
             <Link 
               href="/login"
-              className="bg-gradient-to-r from-[#f8bc33] to-[#4A90E2] hover:from-[#4A90E2] hover:to-[#f8bc33] text-white px-6 py-2 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl font-medium transform hover:-translate-y-1 hover:scale-105"
+              className="bg-gradient-accent hover:bg-gradient-hero text-white px-6 py-2 rounded-custom-lg transition-custom shadow-custom-lg hover:shadow-custom-xl font-medium transform hover:-translate-y-1 hover:scale-105"
             >
               <User className="h-4 w-4 inline mr-2" />
               Sign In
@@ -81,7 +81,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-[#4A90E2] hover:text-[#1C2E4A] transition-all duration-300 transform hover:scale-110"
+            className="md:hidden text-primary hover:text-primary-dark transition-custom transform hover:scale-110"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -100,7 +100,7 @@ export default function Header() {
                 <a 
                   key={item.href}
                   href={item.href} 
-                  className="text-lg font-light text-[#4A90E2] hover:text-[#1C2E4A] transition-all duration-300 px-4 py-2 rounded-lg hover:bg-[#f8bc33]/10 animate-fadeInLeft"
+                  className="text-lg font-light text-primary hover:text-primary-dark transition-custom px-4 py-2 rounded-custom-lg hover:bg-accent/10 animate-fadeInLeft"
                   style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -110,7 +110,7 @@ export default function Header() {
               <div className="px-4 pt-4 border-t border-gray-100">
                 <Link 
                   href="/login"
-                  className="w-full bg-gradient-to-r from-[#f8bc33] to-[#4A90E2] text-white px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 block text-center"
+                  className="w-full bg-gradient-accent text-white px-4 py-2 rounded-custom-lg transition-custom transform hover:scale-105 block text-center"
                 >
                   Sign In
                 </Link>
