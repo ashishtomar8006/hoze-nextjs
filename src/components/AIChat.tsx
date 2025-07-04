@@ -18,7 +18,8 @@ const AIChat = () => {
     const newMessage = {
       id: messages.length + 1,
       type: 'user',
-      content: inputValue
+      content: inputValue,
+      suggestions: []
     };
     
     setMessages([...messages, newMessage]);

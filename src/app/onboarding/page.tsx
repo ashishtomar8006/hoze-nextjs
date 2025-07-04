@@ -105,11 +105,11 @@ const onboardingQuestions = [
     question: "How important is food discovery?",
     type: "scale",
     options: [
-      { id: "1", label: "Not important", emoji: "😐" },
-      { id: "2", label: "Slightly important", emoji: "🙂" },
-      { id: "3", label: "Moderately important", emoji: "😊" },
-      { id: "4", label: "Very important", emoji: "😋" },
-      { id: "5", label: "Extremely important", emoji: "🤤" }
+      { id: "1", label: "Not important", emoji: "😐", description: "Food is just fuel for me" },
+      { id: "2", label: "Slightly important", emoji: "🙂", description: "I'll try local food occasionally" },
+      { id: "3", label: "Moderately important", emoji: "😊", description: "Good food enhances my trip" },
+      { id: "4", label: "Very important", emoji: "😋", description: "I seek out local culinary experiences" },
+      { id: "5", label: "Extremely important", emoji: "🤤", description: "Food is a major reason I travel" }
     ]
   }
 ]
@@ -125,7 +125,6 @@ export default function Onboarding() {
 
   const handleAnswer = (optionId: string) => {
     setAnswers({ ...answers, [currentQuestion.id]: optionId })
-    
     // Auto-advance after selection
     setTimeout(() => {
       if (currentStep < onboardingQuestions.length - 1) {
@@ -181,7 +180,7 @@ export default function Onboarding() {
           </div>
         </div>
       </div>
-      
+
       <div className="relative overflow-hidden">
         {/* Subtle Background with Floating Travel Icons - No flickering */}
         <div className="absolute inset-0 pointer-events-none">
@@ -210,7 +209,7 @@ export default function Onboarding() {
           <div className="absolute bottom-20 right-8 opacity-15">
             <Navigation className="h-10 w-10 text-[#f8bc33] animate-float" style={{ animationDelay: '7s' }} />
           </div>
-          
+
           {/* Subtle travel routes - no aggressive animation */}
           <svg className="absolute inset-0 w-full h-full opacity-8" viewBox="0 0 800 600">
             <path
@@ -239,7 +238,6 @@ export default function Onboarding() {
               className="animate-gentle-pulse"
               style={{ animationDelay: '4s' }}
             />
-            
             {/* Static destination markers */}
             <circle cx="150" cy="100" r="4" fill="#4A90E2" opacity="0.6" />
             <circle cx="300" cy="100" r="4" fill="#f8bc33" opacity="0.6" />
@@ -285,7 +283,6 @@ export default function Onboarding() {
                           <Check className="h-4 w-4 text-white" />
                         </div>
                       )}
-                      
                       <div className="text-center">
                         <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-200">
                           {option.emoji}
